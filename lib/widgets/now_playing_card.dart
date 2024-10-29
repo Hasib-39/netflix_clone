@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/common/utils.dart';
-import 'package:netflix_clone/models/upcoming_movie_model.dart';
+import 'package:netflix_clone/models/now_playing_model.dart';
 
-class MovieCardWidget extends StatelessWidget {
-  final Future<UpcomingMovieModel> future;
+class NowPlayingCard extends StatelessWidget {
+  final Future<NowPlayingModel> future;
   final String headLineText;
-  const MovieCardWidget(
+  const NowPlayingCard(
       {super.key, required this.future, required this.headLineText});
 
   @override

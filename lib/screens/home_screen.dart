@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/common/utils.dart';
+import 'package:netflix_clone/models/now_playing_model.dart';
 import 'package:netflix_clone/models/upcoming_movie_model.dart';
 import 'package:netflix_clone/services/api_services.dart';
 import 'package:netflix_clone/widgets/movie_card_widget.dart';
+import 'package:netflix_clone/widgets/now_playing_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,12 +15,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Future<UpcomingMovieModel> upcomingFuture;
+  late Future<NowPlayingModel> nowPlayingFuture;
+
   ApiServices apiServices = ApiServices();
 
   @override
   void initState() {
     super.initState();
     upcomingFuture=apiServices.getUpcomingMovies();
+    nowPlayingFuture=apiServices.getNowPlayingMovies();
   }
   @override
   Widget build(BuildContext context) {
@@ -61,8 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: 220,
-                  child: MovieCardWidget(future: upcomingFuture, headLineText: "Upcoming Movies")),
+                  height: 220,
+                  child: NowPlayingCard(future: nowPlayingFuture, headLineText: "Now Playing")
+              ),
+              SizedBox(
+                  height: 220,
+                  child: MovieCardWidget(future: upcomingFuture, headLineText: "Upcoming Movies")
+              ),
             ],
           ),
         ),
