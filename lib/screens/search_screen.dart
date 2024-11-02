@@ -6,6 +6,8 @@ import 'package:netflix_clone/models/popular_movie_model.dart';
 import 'package:netflix_clone/models/search_movie_model.dart';
 import 'package:netflix_clone/services/api_services.dart';
 
+import 'movie_detail_screen.dart';
+
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
@@ -90,27 +92,34 @@ class _SearchScreenState extends State<SearchScreen> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
-                              return Container(
-                                height: 150,
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Image.network(
-                                        '$imageUrl${data[index].posterPath}'
-                                    ),
-                                    const SizedBox(width:  20,),
-                                    SizedBox(
-                                      width: 260,
-                                      child: Text(
-                                        data[index].name,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
+                              return InkWell(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                    MovieDetailScreen(movieId: data[index].id),
+                                  ));
+                                },
+                                child: Container(
+                                  height: 150,
+                                  padding: const EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Image.network(
+                                          '$imageUrl${data[index].posterPath}'
                                       ),
-                                    ),
-                                  ],
+                                      const SizedBox(width:  20,),
+                                      SizedBox(
+                                        width: 260,
+                                        child: Text(
+                                          data[index].title,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             })
