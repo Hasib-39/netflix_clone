@@ -81,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 220,
                   child: NowPlayingCard(future: nowPlayingFuture, headLineText: "Now Playing")
               ),
+              const SizedBox(height: 20,),
               SizedBox(
                   height: 220,
                   child: MovieCardWidget(future: upcomingFuture, headLineText: "Upcoming Movies")

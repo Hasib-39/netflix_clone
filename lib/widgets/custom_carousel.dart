@@ -19,7 +19,15 @@ class CustomCarouselSlider extends StatelessWidget {
           itemBuilder: (BuildContext context,int index,int realIndex){
             var url = data.results[index].backdropPath.toString();
 
-            return GestureDetector(child: CachedNetworkImage(imageUrl: "$imageUrl$url",));
+            return GestureDetector(
+                child: Column(
+                  children: [
+                    CachedNetworkImage(imageUrl: "$imageUrl$url",),
+                    const SizedBox(height: 20,),
+                    Text(data.results[index].name),
+                  ],
+                )
+            );
           },
           options: CarouselOptions(
             height:( size.height * 0.33<300)?300:size.height*0.33,

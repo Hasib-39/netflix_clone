@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:netflix_clone/common/utils.dart';
 import 'package:netflix_clone/models/now_playing_model.dart';
+import 'package:netflix_clone/models/search_movie_model.dart';
 import 'package:netflix_clone/models/tv_series_model.dart';
 import 'package:netflix_clone/models/upcoming_movie_model.dart';
 import 'package:http/http.dart' as http;
@@ -49,5 +50,20 @@ class ApiServices {
       return TvSeriesModel.fromJson(jsonDecode(response.body));
     }
     throw Exception("Failed to load top rated tvseries");
+  }
+
+  Future<SearchMovieModel> getSearchMovie(String searchText) async {
+    endPoint = 'search/tv?query=$searchText';
+    final url = '$baseUrl$endPoint';
+
+    final response = await http.get(Uri.parse(url), headers: {
+      "Authorization":"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NTAyYjhjMDMxYzc5NzkwZmU1YzBiNGY5NGZkNzcwZCIsInN1YiI6IjYzMmMxYjAyYmE0ODAyMDA4MTcyNjM5NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.N1SoB26LWgsA33c-5X0DT5haVOD4CfWfRhwpDu9eGkc"
+    });
+    if(response.statusCode == 200){
+      log("Success");
+
+      return SearchMovieModel.fromJson(jsonDecode(response.body));
+    }
+    throw Exception("Failed to load search movie");
   }
 }
