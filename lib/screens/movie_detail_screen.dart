@@ -122,8 +122,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                           :Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                             const Text("More Like This"),
                             const SizedBox(height: 20,),
                             GridView.builder(
@@ -136,7 +136,13 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                 crossAxisSpacing: 5,
                                 childAspectRatio: 1.5 / 2),
                               itemBuilder: (context, index){
-                               return CachedNetworkImage(imageUrl: "$imageUrl${movieRecommendations.results[index].posterPath}",);
+                               return InkWell(
+                                 onTap: (){
+                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                       MovieDetailScreen(movieId: movieRecommendations.results[index].id),
+                                   ));
+                                 },
+                                   child: CachedNetworkImage(imageUrl: "$imageUrl${movieRecommendations.results[index].posterPath}",));
                               },
                             ),
                                                     ],
