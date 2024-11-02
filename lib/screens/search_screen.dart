@@ -142,26 +142,32 @@ class _SearchScreenState extends State<SearchScreen> {
                       childAspectRatio: 1.2 / 2,
                     ),
                     itemBuilder: (context, index){
-                      return Column(
-                        children: [
-                          searchMovieModel!.results[index].backdropPath == null
-                          ?Image.asset('assets/netflix.png', height: 170,)
-                          :CachedNetworkImage(
-                              imageUrl: "$imageUrl${searchMovieModel!.results[index].backdropPath}",
-                            height: 170,
-                          ),
-                          SizedBox(
-                            width: 100,
-                            child: Text(
-                              searchMovieModel!.results[index].name,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontSize: 14,
+                      return InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                              MovieDetailScreen(movieId: searchMovieModel!.results[index].id)));
+                        },
+                        child: Column(
+                          children: [
+                            searchMovieModel!.results[index].backdropPath == null
+                            ?Image.asset('assets/netflix.png', height: 170,)
+                            :CachedNetworkImage(
+                                imageUrl: "$imageUrl${searchMovieModel!.results[index].backdropPath}",
+                              height: 170,
+                            ),
+                            SizedBox(
+                              width: 100,
+                              child: Text(
+                                searchMovieModel!.results[index].title,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       );
                     })
               ],

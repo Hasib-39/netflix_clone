@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:netflix_clone/common/utils.dart';
 import 'package:netflix_clone/models/movie_detail_model.dart';
+import 'package:netflix_clone/models/movie_recommendation_model.dart';
 import 'package:netflix_clone/models/now_playing_model.dart';
 import 'package:netflix_clone/models/popular_movie_model.dart';
 import 'package:netflix_clone/models/search_movie_model.dart';
@@ -55,7 +56,7 @@ class ApiServices {
   }
 
   Future<SearchMovieModel> getSearchMovie(String searchText) async {
-    endPoint = 'search/tv?query=$searchText';
+    endPoint = 'search/movie?query=$searchText';
     final url = '$baseUrl$endPoint';
 
     final response = await http.get(Uri.parse(url), headers: {
@@ -95,7 +96,7 @@ class ApiServices {
     throw Exception("Failed to load movie detail");
   }
 
-  Future<MovieDetailModel> getMovieRecommendations(int id) async {
+  Future<MovieRecommendationModel> getMovieRecommendations(int id) async {
     endPoint = 'movie/$id/recommendations';
     final url = '$baseUrl$endPoint$key';
 
@@ -103,8 +104,8 @@ class ApiServices {
     if(response.statusCode == 200){
       log("Success");
 
-      return MovieDetailModel.fromJson(jsonDecode(response.body));
+      return MovieRecommendationModel.fromJson(jsonDecode(response.body));
     }
-    throw Exception("Failed to load movie detail");
+    throw Exception("Failed to load movie recommendation");
   }
 }
