@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:netflix_clone/common/utils.dart';
 import 'package:netflix_clone/models/now_playing_model.dart';
+import 'package:netflix_clone/models/popular_movie_model.dart';
 import 'package:netflix_clone/models/search_movie_model.dart';
 import 'package:netflix_clone/models/tv_series_model.dart';
 import 'package:netflix_clone/models/upcoming_movie_model.dart';
@@ -65,5 +66,18 @@ class ApiServices {
       return SearchMovieModel.fromJson(jsonDecode(response.body));
     }
     throw Exception("Failed to load search movie");
+  }
+
+  Future<PopularMovieModel> getPopularMovies() async {
+    endPoint = 'tv/popular';
+    final url = '$baseUrl$endPoint$key';
+
+    final response = await http.get(Uri.parse(url));
+    if(response.statusCode == 200){
+      log("Success");
+
+      return PopularMovieModel.fromJson(jsonDecode(response.body));
+    }
+    throw Exception("Failed to load popular movie");
   }
 }
