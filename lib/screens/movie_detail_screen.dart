@@ -39,7 +39,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           builder: (context, snapshot) {
             if(snapshot.hasData) {
               final movie = snapshot.data;
-              // String genresText = movie!.genres.map((genre) => genre.name).join(', ');
+              String genresText = movie!.genres.map((genre) => genre.name).join(', ');
               return Column(
                 children: [
                   Stack(
@@ -49,7 +49,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                               image: NetworkImage(
-                                  "$imageUrl${movie!.backdropPath}"),
+                                  "$imageUrl${movie.backdropPath}"),
                             fit: BoxFit.cover)),
                         child: SafeArea(
                           child: Row(
@@ -67,6 +67,46 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         ),
                       )
                     ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(movie.title,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 15,),
+                        Row(
+                          children: [
+                            Text(movie.releaseDate.year.toString(),
+                              style: const TextStyle(
+                                color: Colors.grey
+                              ),
+                            ),
+                            const SizedBox(width: 30,),
+                            Text(genresText,
+                              style: const TextStyle(
+                                  color: Colors.grey,
+                                fontSize: 17,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 30,),
+                        Text(movie.overview,
+                          maxLines: 6,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               );
