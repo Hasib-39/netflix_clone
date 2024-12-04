@@ -10,14 +10,7 @@ A Netflix-inspired mobile application built with **Flutter** and powered by the 
 - 🚀 **Real-Time Data Fetching**: Data fetched dynamically from TMDB API for the latest updates.  
 
 ## Screenshots 📸  
-### Home Screen
- ![Screenshot_2024-11-15-18-02-10-35_69160baf6dd5d51bc5bfca642219bfde](https://github.com/user-attachments/assets/b94074d0-fbfc-448d-8c7d-700b00f24ab0)
-### Movie/Series Details Page
-![Screenshot_2024-11-15-18-02-27-13_69160baf6dd5d51bc5bfca642219bfde](https://github.com/user-attachments/assets/7f79b5f9-fbf1-4009-ae8e-5d28fc5f9b8f)
-### Search Page
-![Screenshot_2024-11-15-18-02-39-04_69160baf6dd5d51bc5bfca642219bfde](https://github.com/user-attachments/assets/daab30ff-ed01-490e-92d3-7dbeb97c48b2)
-### New & Hot Page
-![Screenshot_2024-11-15-18-02-57-03_69160baf6dd5d51bc5bfca642219bfde](https://github.com/user-attachments/assets/c51279d1-b4e8-4e38-8c87-585bb89d3c62)
+![Your paragraph text](https://github.com/user-attachments/assets/c3425338-02e6-47ba-a67c-4ec2e441356d)
 
 ## Tech Stack 🛠️  
 - **Framework**: [Flutter](https://flutter.dev/)  
